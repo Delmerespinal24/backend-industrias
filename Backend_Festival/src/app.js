@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 
 // Routes
-//import signupRoutes from "./routes/signup.routes";
+import signupAdminRoutes from "./routes/signupAdmin.routes";
 
 const app = express();
 
@@ -14,6 +14,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // Routes
-//app.use("/signup", signupRoutes);
+app.use("/signupAdmin", signupAdminRoutes);
 
 export default app;
