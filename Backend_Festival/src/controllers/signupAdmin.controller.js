@@ -32,7 +32,7 @@ const addUser = async (req, res) => {
         typeof esAdmin === 'undefined'
       ) {
         console.log('entra al if',req.body)
-        return res.status(400).json({ message: `Bad Request. Please fill all fields. ${primerNombre}` });
+        return res.status(400).json({ message: `Por favor, llene todos los campos!. ${primerNombre}` });
       }
       
   

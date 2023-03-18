@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"primerNombre\": \"eddie\",\r\n        \"primerApellido\": \"raudales\",\r\n        \"nombreUsuario\": \"eddieraudales\",\r\n        \"FechaNacimiento\": \"1999-10-14\",\r\n        \"correoElectronico\": \"eddieraudales83@gmail.com\",\r\n        \"telefono\": \"23047925\",\r\n        \"sexo\": \"Masculino\",\r\n        \"password\": \"1234\"\r\n        \r\n    }",
+					"raw": " {\r\n        \"primerNombre\": \"Carlos\",\r\n        \"primerApellido\": \"Salgado\",\r\n        \"nombreUsuario\": \"calolo\",\r\n        \"FechaNacimiento\": \"2001-02-01\",\r\n        \"correoElectronico\": \"csalgadoandres@gmail.com\",\r\n        \"telefono\": \"22912847\",\r\n        \"sexo\": \"Masculino\",\r\n        \"password\": \"calolo123\",\r\n        \"esAdmin\": 1\r\n        \r\n        \r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,14 +21,42 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/signup",
+					"raw": "http://localhost:4000/signupAdmin",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
-						"signup"
+						"signupAdmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreUsuario\": \"csalgadoandres@gmail.com\",\r\n    \"password\": \"calolo123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
 					]
 				}
 			},
