@@ -51,9 +51,9 @@ const addUser = async (req, res) => {
       user.password = await helpers.encryptPassword(password);
   
       await connection.query("INSERT INTO usuarios SET ?", user);
-      return res.json({ message: "User added" });
+      return res.status(200).json({status: 200, message: "Usuario añadido"})
     } catch (error) {
-      return res.status(500).send(error.message);
+      return res.json({status:-1, message: error})
     }
   };
   
