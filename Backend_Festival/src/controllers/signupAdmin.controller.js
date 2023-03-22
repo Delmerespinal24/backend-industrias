@@ -49,11 +49,40 @@ const addUser = async (req, res) => {
       };
       const connection = await getConnection();
       user.password = await helpers.encryptPassword(password);
-  
-      await connection.query("INSERT INTO usuarios SET ?", user);
-      return res.status(200).json({status: 200, message: "Usuario añadido"})
+
+      // Comprueba si existe el nombre de usuario
+      const usernameExists = await connection.query("SELECT nombreUsuario from usuarios where nombreUsuario = ?", nombreUsuario);
+    
+      if (!usernameExists.length) {
+        // Comprueba si existe el correo electronico
+        const emailExists = await connection.query("SELECT correoElectronico from usuarios where correoElectronico = ?", correoElectronico);
+      
+        if (!emailExists.length) {
+          // Comprueba si existe el número de telefono
+          const phoneExists = await connection.query("SELECT telefono from usuarios where telefono = ?", telefono);
+        
+          if (!phoneExists.length) {
+            await connection.query("INSERT INTO usuarios SET ?", user);
+            res.status(200).json({status: 200, message: "Usuario añadido"})
+
+          }else{
+            res.json({status: 402, message: "El número de teléfono ya está en uso"})
+
+          }
+
+        }else{
+          res.json({status: 401, message: "El correo electronico ya está en uso"})
+
+        }
+
+      }else{
+        res.json({status: 400, message: "El nombre de usuario ya está en uso"})
+
+      }
+
+    
     } catch (error) {
-      return res.json({status:-1, message: error})
+      res.send({status: 500, message: error.message});
     }
   };
   
