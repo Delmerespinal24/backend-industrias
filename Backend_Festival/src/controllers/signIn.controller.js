@@ -1,6 +1,7 @@
 import { getConnection } from "./../database/database";
 //import helpers from "./../routes/helpers";
 const helpers = require('../routes/helpers');
+const service = require('../services')
 
 // FUNCIÓN PARA VERIFICAR LOS USUARIOS CREADOS
 const signIn = async (req, res) => {
@@ -13,14 +14,15 @@ const signIn = async (req, res) => {
             return  res.status(400).json({ status: 400, message: "El usuario y la contraseña son requeridos"});
         }
         
-        const rows = await pool.query('SELECT * FROM usuarios WHERE nombreUsuario = ? OR correoElectronico = ?', [nombreUsuario, nombreUsuario]);
+        const rows = await pool.query('SELECT idUsuario, password FROM usuarios WHERE nombreUsuario = ? OR correoElectronico = ?', [nombreUsuario, nombreUsuario]);
 
         if (rows.length > 0) {
             const user = rows[0];
             const validPassword = await helpers.matchPassword(password, user.password)
             
             if (validPassword) {
-                res.status(200).json({status: 200, message: "Usted acaba de Iniciar Sesion", data:rows})
+                res.status(200).send({status: 200, message: "Usted acaba de Iniciar Sesion", token: service.createToken(user) })
+                //res.status(200).json({status: 200, message: "Usted acaba de Iniciar Sesion", data:rows})
               } else {
                 res.status(400).json({status: 400, message: "Contraseña Incorrecta"})
               }

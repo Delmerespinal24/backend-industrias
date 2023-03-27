@@ -7,6 +7,7 @@ import cors from "cors";
 import signupAdminRoutes from "./routes/signupAdmin.routes";
 import signInRoutes from "./routes/signIn.routes";
 import paymentPlanRoutes from "./routes/paymentPlan.routes";
+import userDataRoutes from  "./routes/userData.routes"
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(cors());
 // Routes
 app.use("/signupAdmin", signupAdminRoutes);
 app.use("/login", signInRoutes);
+app.use("/userData", userDataRoutes);
 app.use("/paymentPlan", paymentPlanRoutes);
 
 export default app;
