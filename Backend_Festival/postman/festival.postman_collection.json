@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"noTarjeta\": 1111222233334441,\r\n    \"fechaVencimientoT\": \"2023-03-02\",\r\n    \"codigoCVV\": 553\r\n}",
+					"raw": "{\r\n    \"noTarjeta\": 1111222233334441,\r\n    \"fechaVencimientoT\": \"2023-05-02\",\r\n    \"codigoCVV\": 553,\r\n    \"tipoPlan\": \"premium\",\r\n    \"fechaFin\": \"2023-05-12\",\r\n    \"precio\": \"1200\",\r\n    \"idUsuario\": 76\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,12 +77,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/paymentPlan",
+					"raw": "http://localhost:4200/paymentPlan",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "4000",
+					"port": "4200",
 					"path": [
 						"paymentPlan"
 					]
