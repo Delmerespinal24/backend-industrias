@@ -9,7 +9,7 @@ const userData = async (req, res) => {
 
         const pool = await getConnection();
         
-        const rows = await pool.query('SELECT primerNombre, primerApellido, nombreUsuario, fechaNacimiento, correoElectronico,'
+        const rows = await pool.query('SELECT idUsuario ,primerNombre, primerApellido, nombreUsuario, fechaNacimiento, correoElectronico,'
             +'telefono, sexo, esAdmin FROM usuarios WHERE idUsuario = ?', service.decryptToken(token).sub);
 
         if (rows.length > 0) {
