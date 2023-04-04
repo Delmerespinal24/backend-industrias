@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"primerNombre\": \"Carlos\",\r\n        \"primerApellido\": \"Salgado\",\r\n        \"nombreUsuario\": \"calolo\",\r\n        \"FechaNacimiento\": \"2001-02-01\",\r\n        \"correoElectronico\": \"csalgadoandres@gmail.com\",\r\n        \"telefono\": \"22912847\",\r\n        \"sexo\": \"Masculino\",\r\n        \"password\": \"calolo123\",\r\n        \"esAdmin\": 1\r\n        \r\n        \r\n    }",
+					"raw": " {\r\n        \"primerNombre\": \"Chamoy\",\r\n        \"primerApellido\": \"Vivez\",\r\n        \"nombreUsuario\": \"chamo\",\r\n        \"FechaNacimiento\": \"2002-02-01\",\r\n        \"correoElectronico\": \"chamoy@gmail.com\",\r\n        \"telefono\": \"22912887\",\r\n        \"sexo\": \"Masculino\",\r\n        \"password\": \"chamoy123\",\r\n        \"esAdmin\": 1,\r\n        \"fotoPerfil\": \"htptptpttt.png\"\r\n        \r\n        \r\n        \r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
