@@ -33,7 +33,7 @@ const addUser = async (req, res) => {
         typeof password === 'undefined' ||
         typeof esAdmin === 'undefined' ||
         typeof fotoPerfil === 'undefined' 
-        //typeof fechaCreacion === 'undefined'
+        
       ) {
         console.log('entra al if',req.body)
         return res.status(400).json({ message: `Por favor, llene todos los campos!. ${primerNombre}` });
