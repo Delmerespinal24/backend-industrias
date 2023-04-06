@@ -89,6 +89,134 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "ADD MACHINE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Burkay® Genesis®\", \r\n    \"descripcion\": \"Modelo que permite tenerlo todo: eficiencia excepcional, facilidad de instalación y diseño que ahorra espacio.\",\r\n    \"TipoMaquina\": \"Calentador de gas\",\r\n    \"marca\": \"AO Smith\",\r\n    \"pais\": \"EEUU\",\r\n    \"precio\": 1000900,\r\n    \"existencia\": 2,\r\n    \"image_1\": \"\",\r\n    \"image_2\": \"\",\r\n    \"image_3\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/machinery/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"machinery",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET MACHINERY (ALL)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/machinery",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"machinery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE MACHINE",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Gold Xi DVE\", \r\n    \"descripcion\": \"Equipos con sistemas de control inteligente que cubren todo tipo de condiciones.\",\r\n    \"TipoMaquina\": \"Calentador eléctrico\",\r\n    \"marca\": \"AO Smith\",\r\n    \"pais\": \"EEUU\",\r\n    \"precio\": 1900000,\r\n    \"existencia\": 3,\r\n    \"image_1\": \"\",\r\n    \"image_2\": \"\",\r\n    \"image_3\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/machinery/edit/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"machinery",
+						"edit",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE MACHINE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/machinery/delete/1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"machinery",
+						"delete",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET MACHINERY X BRAND",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/machinery/AO Smith",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"machinery",
+						"AO Smith"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

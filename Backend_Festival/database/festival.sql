@@ -59,12 +59,12 @@ existencia INTEGER NOT NULL,
 image_1 VARCHAR (300) NOT NULL,
 image_2 VARCHAR (300) NOT NULL,
 image_3 VARCHAR (300) NOT NULL,
-idTipoMaquina INTEGER NOT NULL,
-idMarca INTEGER NOT NULL,
-CONSTRAINT ck_nombre CHECK (nombre NOT LIKE '%[^A-Z]%'),
-FOREIGN KEY (idTipoMaquina) REFERENCES tipoMaquina(idTipoMaquina),
-FOREIGN KEY (idMarca) REFERENCES marca(idMarca)
+TipoMaquina VARCHAR (100) NOT NULL,
+marca VARCHAR (100) NOT NULL,
+pais VARCHAR (100) NOT NULL,
+CONSTRAINT ck_nombre CHECK (nombre NOT LIKE '%[^A-Z]%')
 );
+
 
 
 CREATE TABLE repuestos(
