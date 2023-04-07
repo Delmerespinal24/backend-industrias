@@ -8,16 +8,16 @@ const addMachine = async (req, res) => {
     try {
         
          var machine = {
-            nombre: req.body.nombre,
-            descripcion : req.body.descripcion,
-            TipoMaquina : req.body.TipoMaquina,
-            marca : req.body.marca,
-            pais : req.body.pais,
-            precio : req.body.precio,
-            existencia : req.body.existencia,
-            image_1 : req.body.image_1,
-            image_2 : req.body.image_2,
-            image_3 : req.body.image_3
+            nombre: req.body.nombreMaquina,
+            descripcion : req.body.descripcionMaquina,
+            TipoMaquina : req.body.tipoMaquina,
+            marca : req.body.marcaMaquina,
+            pais : req.body.paisMaquina,
+            precio : req.body.precioMaquina,
+            existencia : req.body.existenciaMaquina,
+            image_1 : req.body.imagen1Maquina,
+            image_2 : req.body.imagen2Maquina,
+            image_3 : req.body.imagen3Maquina
         }
 
 
