@@ -51,7 +51,7 @@ const addCard = async (req, res) => {
         let hoy = new Date();
 
         if(fechaVence<hoy){
-            return res.status(200).json({
+            return res.status(400).json({
                 "message": "¡Advertencia! Tarjeta de credito obsoleta."
 
             });
@@ -60,11 +60,20 @@ const addCard = async (req, res) => {
 /////////////////////////////////////////////////////////////////////////////////////////////7
         const rows1 = await pool.query('SELECT * FROM planes WHERE idUsuario = ?', [plan.idUsuario])
 
-        if(rows1.length == 0){
+         //OBTENER LA FECHAINICIO (EN QUE SE COMPRÓ EL PLAN)
+        let hoy1 = new Date();
+        let dia = hoy1.getDate();
+        let mes = hoy1.getMonth() + 1;
+        let anio = hoy1.getFullYear();
 
+       plan.fechaInicio = `${anio}-${mes}-${dia}`; 
+
+        if(rows1.length != 0 ){
+
+            
             await pool.query("UPDATE planes SET ? WHERE idUsuario = ?", [plan, plan.idUsuario]);
 
-            return res.status(400).json({
+            return res.status(200).json({
                 "message": "Pago realizado con exito, plan actualizado"
 
             });
@@ -74,15 +83,6 @@ const addCard = async (req, res) => {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
        else{
-
-         //OBTENER LA FECHAINICIO (EN QUE SE COMPRÓ EL PLAN)
-         let hoy = new Date();
-         let dia = hoy.getDate();
-         let mes = hoy.getMonth() + 1;
-         let anio = hoy.getFullYear();
-
-        plan.fechaInicio = `${anio}-${mes}-${dia}`; 
-
 
         //INSERTAR DATOS EN PLANES
         await pool.query("INSERT INTO planes SET ?",plan); 
