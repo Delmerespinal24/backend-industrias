@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"noTarjeta\": 1111222233334441,\r\n    \"fechaVencimientoT\": \"2023-05-02\",\r\n    \"codigoCVV\": 553,\r\n    \"tipoPlan\": \"premium\",\r\n    \"fechaFin\": \"2023-05-12\",\r\n    \"precio\": \"1200\",\r\n    \"idUsuario\": 76\r\n}",
+					"raw": "{\r\n    \"noTarjeta\": 1111222233334441,\r\n    \"fechaVencimientoT\": \"2023-05-02\",\r\n    \"codigoCVV\": 553,\r\n    \"tipoPlan\": \"normal\",\r\n    \"fechaFin\": \"2023-05-12\",\r\n    \"precio\": \"1200\",\r\n    \"idUsuario\": 102\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,12 +77,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4200/paymentPlan",
+					"raw": "http://localhost:4000/paymentPlan",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "4200",
+					"port": "4000",
 					"path": [
 						"paymentPlan"
 					]
@@ -97,7 +97,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Burkay® Genesis®\", \r\n    \"descripcion\": \"Modelo que permite tenerlo todo: eficiencia excepcional, facilidad de instalación y diseño que ahorra espacio.\",\r\n    \"TipoMaquina\": \"Calentador de gas\",\r\n    \"marca\": \"AO Smith\",\r\n    \"pais\": \"EEUU\",\r\n    \"precio\": 1000900,\r\n    \"existencia\": 2,\r\n    \"image_1\": \"\",\r\n    \"image_2\": \"\",\r\n    \"image_3\": \"\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Burkay® Genesisssss®\", \r\n    \"descripcion\": \"Modelo que permite tenerlo todo: eficiencia excepcional, facilidad de instalación y diseño que ahorra espacio.\",\r\n    \"TipoMaquina\": \"Calentador de gas\",\r\n    \"marca\": \"AO Smith\",\r\n    \"pais\": \"EEUU\",\r\n    \"precio\": 1000900,\r\n    \"existencia\": 2,\r\n    \"image_1\": \"\",\r\n    \"image_2\": \"\",\r\n    \"image_3\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -183,7 +183,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/machinery/delete/1000",
+					"raw": "http://localhost:4000/machinery/delete/11",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -192,7 +192,7 @@
 					"path": [
 						"machinery",
 						"delete",
-						"1000"
+						"11"
 					]
 				}
 			},
@@ -213,6 +213,39 @@
 					"path": [
 						"machinery",
 						"AO Smith"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET SPECIFIC MACHINE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/machinery/machine/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"machinery",
+						"machine",
+						"2"
 					]
 				}
 			},

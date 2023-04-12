@@ -19,6 +19,9 @@ const signIn = async (req, res) => {
         if (rows.length > 0) {
             const user = rows[0];
             const validPassword = await helpers.matchPassword(password, user.password)
+
+           // if() PODEMOS PONER UNA CONDICION VERIFICANDO LA FECHA DEL PLAN AL QUE SE ACCEDE, SI LA FECHA YA VENCIO 
+           // QUE NO PUEDA HACER EL LOGIN
             
             if (validPassword) {
                 res.status(200).send({status: 200, message: "Usted acaba de Iniciar Sesion", token: service.createToken(user), esAdmin:user.esAdmin })

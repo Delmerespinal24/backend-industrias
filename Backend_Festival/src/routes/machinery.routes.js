@@ -8,5 +8,5 @@ router.get("/", machineryController.getMachinery);
 router.put("/edit/:idMaquina", machineryController.updateMachine);
 router.delete("/delete/:idMaquina", machineryController.deleteMachine);
 router.get("/:marca", machineryController.getMachineryxbrand);
-
+router.get("/machine/:idMaquina", machineryController.getMachine);
 export default router;

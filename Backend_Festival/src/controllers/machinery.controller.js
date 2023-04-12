@@ -76,6 +76,44 @@ const getMachinery= async (req, res) => {
 };
 
 
+/*******************************************************************************************************/
+// get para traer una maquina especifica por id
+
+const getMachine= async (req, res) => {
+    const connection = await getConnection();
+    try {
+        const { idMaquina } = req.params;
+        var status=200;
+        var message="Maquina obtenida con éxito";
+
+        const rows = await connection.query('SELECT * FROM maquina WHERE idMaquina = ?' , [idMaquina]);
+        if(rows.length == 0){
+            status=400;
+            message="¡Advertencia! La maquina no existe";
+
+            var resultado={
+                status: status,
+                message: message
+                }
+                res.status(status).json(resultado);
+        }
+        else{
+
+        const resultMachine = await connection.query("SELECT * FROM maquina WHERE idMaquina = ?",[idMaquina]);
+
+        res.json({status:200,message,data:resultMachine});
+            
+        //await connection.query("SELECT * FROM maquina WHERE idMaquina = ?",[idMaquina]);
+            
+        }
+
+    } catch (error) {
+        res.status(500);
+        res.send({status: 500, message: error.message});
+    }
+};
+
+
 
 /*******************************************************************************************************/
 
@@ -207,7 +245,8 @@ export const methods = {
     getMachinery,
     updateMachine,
     deleteMachine,
-    getMachineryxbrand
+    getMachineryxbrand,
+    getMachine
    // getAvailableProperties,
     //updateProperty,
     //updateUserProperty,
