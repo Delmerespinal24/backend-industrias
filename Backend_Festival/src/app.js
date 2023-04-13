@@ -10,6 +10,7 @@ import paymentPlanRoutes from "./routes/paymentPlan.routes";
 import userDataRoutes from  "./routes/userData.routes";
 import machineryRoutes from "./routes/machinery.routes";
 import filterRoutes from "./routes/filter.routes";
+import purchaseRoutes from "./routes/compra.routes";
 
 const app = express();
 
@@ -30,7 +31,8 @@ app.use("/login", signInRoutes);
 app.use("/userData", userDataRoutes);
 app.use("/paymentPlan", paymentPlanRoutes);
 app.use("/machinery", machineryRoutes);
-app.use("/filter", filterRoutes)
+app.use("/filter", filterRoutes);
+app.use("/purchase", purchaseRoutes)
 
 
 export default app;

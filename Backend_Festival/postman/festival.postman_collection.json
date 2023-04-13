@@ -278,6 +278,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "PURCHASE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUsuario\": \"45\", \r\n    \"idMaquina\": \"4\",\r\n    \"cantidadProducto\": 2,\r\n    \"noTarjeta\": 1111222233334443,\r\n    \"fechaVencimientoT\": \"2025-05-02\",\r\n    \"codigoCVV\": 513\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/purchase",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"purchase"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
