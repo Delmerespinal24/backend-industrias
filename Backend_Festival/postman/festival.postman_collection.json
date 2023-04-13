@@ -250,6 +250,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "FILTER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"\", \r\n    \"TipoMaquina\": \"\",\r\n    \"marca\": \"\",\r\n    \"pais\": \"\",\r\n    \"precioMinimo\": \"\",\r\n    \"precioMaximo\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/filter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"filter"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
