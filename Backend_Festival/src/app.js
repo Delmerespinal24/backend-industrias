@@ -42,7 +42,7 @@ app.get('/pruebas',(req,res)=>{
     })
 })
 app.get('/.well-known/pki-validation/F1A78481F104416E62F9344310BA0B8C.txt', (req,res)=>{
-    const filePath = path.resolve(__dirname, '../Backend_Festival/F1A78481F104416E62F9344310BA0B8C.txt');
+    const filePath = path.resolve(__dirname, '../F1A78481F104416E62F9344310BA0B8C.txt');
     res.sendFile(filePath);
   })
 
