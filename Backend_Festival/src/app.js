@@ -40,12 +40,9 @@ app.get('/prueba',(req,res)=>{
         people:'yooo'
     })
 })
-const path = require('path');
-
-app.get('/.well-known/pki-validation/D394A86C5585F789E2618BB2F93ABAB6.txt', (req, res) => {
-  const filePath = path.join(__dirname, 'Backend_Festival', 'F1A78481F104416E62F9344310BA0B8C.txt');
-  res.sendFile(filePath);
-});
+app.get('/.well-known/pki-validation/D394A86C5585F789E2618BB2F93ABAB6.txt', (req,res)=>{
+    res.sendFile('home/ec2-user/backend-industrias/Backend_Festival/F1A78481F104416E62F9344310BA0B8C.txt');
+} )
 
 
 export default app;
