@@ -33,6 +33,11 @@ app.use("/paymentPlan", paymentPlanRoutes);
 app.use("/machinery", machineryRoutes);
 app.use("/filter", filterRoutes);
 app.use("/purchase", purchaseRoutes)
+app.get('/prueba',(req,res)=>{
+    res.send({
+        people:'yooo'
+    })
+})
 
 
 export default app;
