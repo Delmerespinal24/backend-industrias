@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import bodyParser from 'body-parser';
 import cors from "cors";
+import path from 'path';
 
 // Routes
 import signupAdminRoutes from "./routes/signupAdmin.routes";
@@ -40,9 +41,10 @@ app.get('/prueba',(req,res)=>{
         people:'yooo'
     })
 })
-app.get('/.well-known/pki-validation/D394A86C5585F789E2618BB2F93ABAB6.txt', (req,res)=>{
-    res.sendFile('home/ec2-user/backend-industrias/Backend_Festival/F1A78481F104416E62F9344310BA0B8C.txt');
-} )
+app.get('/.well-known/pki-validation/F1A78481F104416E62F9344310BA0B8C.txt', (req,res)=>{
+    const filePath = path.resolve(__dirname, '../Backend_Festival/F1A78481F104416E62F9344310BA0B8C.txt');
+    res.sendFile(filePath);
+  })
 
 
 export default app;
