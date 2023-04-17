@@ -13,7 +13,9 @@ import filterRoutes from "./routes/filter.routes";
 import purchaseRoutes from "./routes/compra.routes";
 
 const app = express();
+const fs = require('fs');
 
+const file = fs.readFileSync('./D394A86C5585F789E2618BB2F93ABAB6.txt')
 
 // Settings
 app.set("port", 4000);
@@ -38,6 +40,9 @@ app.get('/prueba',(req,res)=>{
         people:'yooo'
     })
 })
+app.get('/.well-known/pki-validation/D394A86C5585F789E2618BB2F93ABAB6.txt', (req,res)=>{
+    res.sendFile('home/ec2-user/backend-industrias/Backend_Festival/D394A86C5585F789E2618BB2F93ABAB6.txt');
+} )
 
 
 export default app;
