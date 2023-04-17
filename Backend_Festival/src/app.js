@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from "cors";
 import path from 'path';
 
+
 // Routes
 import signupAdminRoutes from "./routes/signupAdmin.routes";
 import signInRoutes from "./routes/signIn.routes";
@@ -15,8 +16,15 @@ import purchaseRoutes from "./routes/compra.routes";
 
 const app = express();
 const fs = require('fs');
+const https = require('https')
 
-const file = fs.readFileSync('./F1A78481F104416E62F9344310BA0B8C.txt')
+const key = fs.readFileSync('private.key');
+const cert = fs.readFileSync('certificate.crt');
+
+const cred={
+    key,
+    cert
+}
 
 // Settings
 app.set("port", 4000);
@@ -45,6 +53,9 @@ app.get('/.well-known/pki-validation/F1A78481F104416E62F9344310BA0B8C.txt', (req
     const filePath = path.resolve(__dirname, '../F1A78481F104416E62F9344310BA0B8C.txt');
     res.sendFile(filePath);
   })
+
+const httpsServer = https.createServer(cred,app);
+httpsServer.listen(8443);
 
 
 export default app;
