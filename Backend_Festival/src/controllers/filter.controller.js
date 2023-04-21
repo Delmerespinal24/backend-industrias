@@ -49,10 +49,10 @@ const getMachineryFilter= async (req, res) => {
         message = "No se encontraron coincidencias";
         status = 400;
        }
-        res.status(status).json({status: status, message: message, resultado});
+        res.json({status: status, message: message, resultado});
     } catch (error) {
        status = 500;
-       res.status(status).json({status: status, message: error.message});
+       res.json({status: status, message: error.message});
     }
 };
 

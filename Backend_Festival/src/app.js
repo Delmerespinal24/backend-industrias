@@ -11,7 +11,9 @@ import userDataRoutes from  "./routes/userData.routes";
 import machineryRoutes from "./routes/machinery.routes";
 import filterRoutes from "./routes/filter.routes";
 import purchaseRoutes from "./routes/compra.routes";
+import imagesRoutes from "./routes/images.routes"
 
+const pat = require('path')
 const app = express();
 
 
@@ -23,6 +25,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(pat.join(__dirname,'ImagenesMaquinaria')))
 
 
 // Routes
@@ -33,6 +36,7 @@ app.use("/paymentPlan", paymentPlanRoutes);
 app.use("/machinery", machineryRoutes);
 app.use("/filter", filterRoutes);
 app.use("/purchase", purchaseRoutes)
+app.use("/product",imagesRoutes)
 
 
 export default app;
