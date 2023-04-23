@@ -14,6 +14,7 @@ import machineryRoutes from "./routes/machinery.routes";
 import filterRoutes from "./routes/filter.routes";
 import purchaseRoutes from "./routes/compra.routes";
 import imagesRoutes from "./routes/images.routes"
+import signInSaasRoutes from "./routes/signInSaas.routes";
 
 const pat = require('path')
 const app = express();
@@ -46,7 +47,8 @@ app.use("/userData", userDataRoutes);
 app.use("/paymentPlan", paymentPlanRoutes);
 app.use("/machinery", machineryRoutes);
 app.use("/filter", filterRoutes);
-app.use("/purchase", purchaseRoutes)
+app.use("/purchase", purchaseRoutes);
+app.use("/LoginSaas", signInSaasRoutes);
 
 app.use("/product",imagesRoutes)
 
