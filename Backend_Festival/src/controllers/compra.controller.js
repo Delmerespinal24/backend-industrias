@@ -63,17 +63,6 @@ const addPurchase = async (req, res) => {
 
             });
          }
-
-        let fechaVence = new Date(tarjeta.fechaVencimientoT);
-
-        let hoy = new Date();
-
-        if(fechaVence<hoy){
-            return res.status(400).json({
-                "message": "¡Advertencia! La tarjeta de credito esta obsoleta."
-
-            });
-        }
        
         else{
         

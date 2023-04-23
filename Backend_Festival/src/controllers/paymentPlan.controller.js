@@ -46,17 +46,6 @@ const addCard = async (req, res) => {
             });
          }
 
-        let fechaVence = new Date(tarjeta.fechaVencimientoT);
-
-        let hoy = new Date();
-
-        if(fechaVence<hoy){
-            return res.status(400).json({
-                "message": "¡Advertencia! Tarjeta de credito obsoleta."
-
-            });
-        }
-
 /////////////////////////////////////////////////////////////////////////////////////////////7
         const rows1 = await pool.query('SELECT * FROM planes WHERE idUsuario = ?', [plan.idUsuario])
 
@@ -72,11 +61,13 @@ const addCard = async (req, res) => {
 
             
             await pool.query("UPDATE planes SET ? WHERE idUsuario = ?", [plan, plan.idUsuario]);
-
-            return res.status(200).json({
-                "message": "Pago realizado con exito, plan actualizado"
-
-            });
+            
+            var resultado={
+                status: 200,
+                message: "Pago realizado con exito, plan actualizado"
+                }
+                res.status(status).json(resultado);
+                return;
 
         }
 
