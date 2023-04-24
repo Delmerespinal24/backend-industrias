@@ -119,6 +119,85 @@ const addPurchase = async (req, res) => {
     }
 };
 
+const getTotal = async (req, res) => {
+
+    const pool = await getConnection();
+    // await pool.beginTransaction();
+    await pool.query('start transaction')
+
+    try {
+        var compra = {
+            idUsuario : req.body.idUsuario,
+            idMaquina : req.body.idMaquina,
+            cantidadProducto : req.body.cantidadProducto,
+            precioUnitario : 0,
+            subTotal: 0,
+            impuesto: 0,
+            total : 0,
+            fecha : ""
+            
+        }
+
+        var status=200;
+        var message="Esta es la información de compra";
+
+         // VALIDACION EXISTENCIA DEL PRODUCTO COMPRADO
+
+        const existenciaProd = await pool.query('SELECT existencia FROM maquina WHERE idMaquina = ?' , [compra.idMaquina]);
+         const data =JSON.parse(JSON.stringify(existenciaProd).split('"existencia"').join('"existenciaProd"'));
+         const existencia = data[0].existenciaProd; 
+        
+
+        if(existencia< compra.cantidadProducto){
+            return res.status(400).json({
+                "message": "¡Advertencia! No hay en existencia la cantidad de producto especificado."
+            });
+        }
+       
+        else{
+        
+         //OBTENER PRECIO UNITARIO DE LA MAQUINA
+    
+         const precioUnitario = await pool.query('SELECT precio FROM maquina WHERE idMaquina = ?' , [compra.idMaquina]);
+          const data =JSON.parse(JSON.stringify(precioUnitario).split('"precio"').join('"precioUnitario"'));
+          const precioMaquina = data[0].precioUnitario; 
+          compra.precioUnitario = precioMaquina;
+         
+
+         //CALCULAR EL SUBTOTAL
+         compra.subTotal = ((compra.cantidadProducto)*(compra.precioUnitario));
+
+         //IMPUESTO
+         compra.impuesto=compra.subTotal*0.15;
+         //CALCULAR EL TOTAL
+         compra.total = (compra.subTotal + compra.impuesto);
+
+         //OBTENER LA FECHA EN QUE SE HIZO LA COMPRA
+         let hoy = new Date();
+         let dia = hoy.getDate();
+         let mes = hoy.getMonth() + 1;
+         let anio = hoy.getFullYear();
+
+         compra.fecha= `${anio}-${mes}-${dia}`; 
+
+    
+    }
+        var resultado={
+            status: status,
+            message: message,
+            compra: compra,
+            }
+            res.status(status).json(resultado);
+            return;
+
+    } catch (error) {
+        res.status(500);
+        res.send({status: 500, message: error.message});
+        return;
+    }
+};
+
 export const methods = {
-    addPurchase
+    addPurchase,
+    getTotal
     };
