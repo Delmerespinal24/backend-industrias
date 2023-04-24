@@ -3,6 +3,8 @@ import morgan from "morgan";
 import bodyParser from 'body-parser';
 import cors from "cors";
 import path from 'path';
+import webpush from 'web-push';
+
 
 
 // Routes
@@ -16,6 +18,7 @@ import purchaseRoutes from "./routes/compra.routes";
 import imagesRoutes from "./routes/images.routes"
 import signInSaasRoutes from "./routes/signInSaas.routes";
 
+
 const pat = require('path')
 const app = express();
 const fs = require('fs');
@@ -27,6 +30,87 @@ const cert = fs.readFileSync('certificate.crt');
 const cred={
     key,
     cert
+}
+
+//VAPID KKEY PARA PUSH NOTIFICATIONS
+const vapidKeys = {
+    "publicKey": "BM5vCPcH8UEt3K_Ax2ClC8slDubhJQBOfQC4tBO-R_IqnyGfzlGWq-F-tvYDOx_JaiU348Vil3-NeiIK6bIcNlI",
+    "privateKey": "GESPyrj_tftKb7LYDvUMmMv2OMe0s-9pPDI3kTeS20o"
+}
+
+webpush.setVapidDetails(
+    'mailto:example@yourdomain.org',
+    vapidKeys.publicKey,
+    vapidKeys.privateKey
+);
+
+const handlerResponse = (res, message) => {
+    res.status(200).json({
+      message,
+    });
+  };
+  
+
+//CONTROLADORES PARA PUSH NOTIFICATION
+const savePush =(req, res)=>{
+    const name = Math.floor(Date.now()/1000);
+
+    let tokenBrowser = req.body.token;
+
+    let data = JSON.stringify(tokenBrowser, null, 2);
+
+    fs.writeFile(`./src/tokens/token-${name}.json`,data, (err)=>{
+        if (err) throw err;
+        handlerResponse(res,'save success')
+    })
+
+}
+
+const sendPush=(req,res)=>{
+
+    let dias = req.body.dias;
+
+    const payload = {
+        "notification": {
+            "title": "ATLAS",
+            "body": `Recordatorio que le quedan ${dias} dias antes del vencimiento de la subscripcion`,
+            "vibrate": [100, 50, 100],
+            "image": "https://uploadgerencie.com/imagenes/obligaciones-exigibles-antes-del-vencimiento.png",
+            "actions": [{
+                "action": "explore",
+                "title": "Ir al sitio",
+                "url": "https://www.google.com/"
+            }]
+        }
+    }
+
+    const directoryPath = path.join(__dirname,'tokens');
+
+    fs.readdir(directoryPath,(err,files)=>{
+        if (err){
+            handlerResponse(res,'read error',500)
+        }
+        
+
+        files.forEach((file)=>{
+            const tokenRaw = fs.readFileSync(`${directoryPath}/${file}`);
+            const tokenParse = JSON.parse(tokenRaw);
+            
+        webpush.sendNotification(
+            tokenParse,
+            JSON.stringify(payload))
+            .then(res => {
+                console.log('Enviado !!');
+            }).catch(err => {
+                console.log('Error no tiene permiso', err);
+            })
+
+        })
+
+    })
+    
+    res.send({ data: 'Se envio subscribete!!' })
+
 }
 
 // Settings
@@ -57,6 +141,11 @@ app.get('/pruebas',(req,res)=>{
         people:'yooo'
     })
 })
+
+app.route('/save').post(savePush);
+app.route('/send').post(sendPush);
+
+//VALIDANDO LAS CREDENCIALES HTTPS
 app.get('/.well-known/pki-validation/F1A78481F104416E62F9344310BA0B8C.txt', (req,res)=>{
     const filePath = path.resolve(__dirname, '../F1A78481F104416E62F9344310BA0B8C.txt');
     res.sendFile(filePath);
