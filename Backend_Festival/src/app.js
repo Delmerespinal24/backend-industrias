@@ -66,52 +66,52 @@ const savePush =(req, res)=>{
 
 }
 
-const sendPush=(req,res)=>{
-
-    let dias = req.body.dias;
-
+const sendPush = (req, res) => {
+    const dias = req.body.dias;
+  
     const payload = {
-        "notification": {
-            "title": "ATLAS",
-            "body": `Recordatorio que le quedan ${dias} dias antes del vencimiento de la subscripcion`,
-            "vibrate": [100, 50, 100],
-            "image": "https://uploadgerencie.com/imagenes/obligaciones-exigibles-antes-del-vencimiento.png",
-            "actions": [{
-                "action": "explore",
-                "title": "Ir al sitio",
-                "url": "https://www.google.com/"
-            }]
-        }
-    }
-
-    const directoryPath = path.join(__dirname,'tokens');
-
-    fs.readdir(directoryPath,(err,files)=>{
-        if (err){
-            handlerResponse(res,'read error',500)
-        }
-        
-
-        files.forEach((file)=>{
-            const tokenRaw = fs.readFileSync(`${directoryPath}/${file}`);
-            const tokenParse = JSON.parse(tokenRaw);
-            
-        webpush.sendNotification(
-            tokenParse,
-            JSON.stringify(payload))
-            .then(res => {
-                console.log('Enviado !!');
-            }).catch(err => {
-                console.log('Error no tiene permiso', err);
+      notification: {
+        title: "ATLAS",
+        body: `Recordatorio que le quedan ${dias} días antes del vencimiento de la subscripción`,
+        vibrate: [100, 50, 100],
+        image:
+          "https://uploadgerencie.com/imagenes/obligaciones-exigibles-antes-del-vencimiento.png",
+        actions: [
+          {
+            action: "explore",
+            title: "Ir al sitio",
+            url: "https://www.google.com/",
+          },
+        ],
+      },
+    };
+  
+    const directoryPath = path.join(__dirname, "tokens");
+  
+    fs.readdir(directoryPath, (err, files) => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ error: "read error" });
+      } else {
+        files.forEach((file) => {
+          const tokenRaw = fs.readFileSync(`${directoryPath}/${file}`);
+          const tokenParse = JSON.parse(tokenRaw);
+  
+          webpush
+            .sendNotification(tokenParse, JSON.stringify(payload))
+            .then(() => {
+              console.log("Enviado !!");
             })
-
-        })
-
-    })
-    
-    res.send({ data: 'Se envio subscribete!!' })
-
-}
+            .catch((err) => {
+              console.log("Error no tiene permiso", err);
+            });
+        });
+  
+        res.status(200).json({ message: "Se envió la notificación" });
+      }
+    });
+  };
+  
 
 // Settings
 app.set("port", 4000);
